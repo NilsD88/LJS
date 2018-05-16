@@ -9,14 +9,14 @@
 
 <ion-content>
 
-    <ion-card *ngFor="let item of items"  (click)="showDetails()">
+    <ion-card *ngFor="let item of items"  (click)="showDetails($event,item)">
 
         <ion-card-header>
-          {{item.title}}
+          {{item.name}}
         </ion-card-header>
       
         <ion-card-content>
-          {{item.note}}
+          Aan de leiding: {{item.top3[0].association}}
         </ion-card-content>
       
       </ion-card>

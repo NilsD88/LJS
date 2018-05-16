@@ -12,11 +12,11 @@
     <ion-card *ngFor="let item of items" >
 
         <ion-card-header>
-          {{item.title}}
+          {{item.name}}
         </ion-card-header>
       
-        <ion-card-content>
-          {{item.note}}
+        <ion-card-content >
+         <p class="points">{{item.points}}</p> 
         </ion-card-content>
       
       </ion-card>

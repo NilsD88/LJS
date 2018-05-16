@@ -10,6 +10,9 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StandingsPage } from '../pages/standings/standings';
 import { ActivitiesPage } from '../pages/activities/activities';
+import { DatabaseProvider } from '../providers/database/database';
+import { ActivityDetailPage } from '../pages/activity-detail/activity-detail';
+import { ActivityDetailPageModule } from '../pages/activity-detail/activity-detail.module';
 
 @NgModule({
   declarations: [
@@ -21,6 +24,7 @@ import { ActivitiesPage } from '../pages/activities/activities';
   imports: [
     BrowserModule,
     HttpClientModule,
+    ActivityDetailPageModule,
     IonicModule.forRoot(LJS),
   ],
   bootstrap: [IonicApp],
@@ -28,12 +32,14 @@ import { ActivitiesPage } from '../pages/activities/activities';
     LJS,
     HomePage,
     StandingsPage, 
-    ActivitiesPage
+    ActivitiesPage,
+    ActivityDetailPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    DatabaseProvider
   ]
 })
 export class AppModule {}
