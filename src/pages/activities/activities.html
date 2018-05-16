@@ -16,7 +16,7 @@
         </ion-card-header>
       
         <ion-card-content>
-          Aan de leiding: {{item.top3[0].association}}
+          Aan de leiding: {{item.top3[0] !== undefined ? item.top3[0].association : 'Nog niemand!'}}
         </ion-card-content>
       
       </ion-card>
