@@ -1,29 +1,34 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
-import { MyApp } from './app.component';
+import { LJS } from './app.component';
 import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { StandingsPage } from '../pages/standings/standings';
+import { ActivitiesPage } from '../pages/activities/activities';
 
 @NgModule({
   declarations: [
-    MyApp,
+    LJS,
     HomePage,
-    ListPage
+    StandingsPage,
+    ActivitiesPage
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp),
+    HttpClientModule,
+    IonicModule.forRoot(LJS),
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    MyApp,
+    LJS,
     HomePage,
-    ListPage
+    StandingsPage, 
+    ActivitiesPage
   ],
   providers: [
     StatusBar,

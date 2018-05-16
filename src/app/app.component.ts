@@ -4,12 +4,17 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
+import { StandingsPage } from '../pages/standings/standings';
+import { ActivitiesPage } from '../pages/activities/activities';
+
+
+import firebase from 'firebase';
+import { ENV } from '../environment';
 
 @Component({
   templateUrl: 'app.html'
 })
-export class MyApp {
+export class LJS {
   @ViewChild(Nav) nav: Nav;
 
   rootPage: any = HomePage;
@@ -22,7 +27,8 @@ export class MyApp {
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Home', component: HomePage },
-      { title: 'List', component: ListPage }
+      { title: 'Standings', component: StandingsPage },
+      { title: 'Activities', component: ActivitiesPage }
     ];
 
   }
@@ -34,6 +40,7 @@ export class MyApp {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
+    firebase.initializeApp(ENV.firebase);
   }
 
   openPage(page) {
