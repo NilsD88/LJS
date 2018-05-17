@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { AddPointsPage } from '../add-points/add-points';
 
 /**
  * Generated class for the ActivityDetailPage page.
@@ -19,13 +20,11 @@ export class ActivityDetailPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.selectedItem = navParams.get('item');
-    console.log(this.selectedItem);
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ActivityDetailPage');
+  addPoints($event, item) {
+    this.navCtrl.push(AddPointsPage, {
+      item: item
+    });
   }
-
-
-
 }

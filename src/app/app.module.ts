@@ -10,22 +10,31 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StandingsPage } from '../pages/standings/standings';
 import { ActivitiesPage } from '../pages/activities/activities';
-import { DatabaseProvider } from '../providers/database/database';
 import { ActivityDetailPage } from '../pages/activity-detail/activity-detail';
 import { ActivityDetailPageModule } from '../pages/activity-detail/activity-detail.module';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { ENV } from '../environment';
+import { AddPointsPage } from '../pages/add-points/add-points';
+
 
 @NgModule({
   declarations: [
     LJS,
     HomePage,
     StandingsPage,
-    ActivitiesPage
+    ActivitiesPage,
+    AddPointsPage
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     ActivityDetailPageModule,
     IonicModule.forRoot(LJS),
+    AngularFireModule.initializeApp(ENV.firebase),
+    AngularFireAuthModule,
+    AngularFirestoreModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -33,13 +42,13 @@ import { ActivityDetailPageModule } from '../pages/activity-detail/activity-deta
     HomePage,
     StandingsPage, 
     ActivitiesPage,
-    ActivityDetailPage
+    ActivityDetailPage,
+    AddPointsPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
-    DatabaseProvider
+    {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
 export class AppModule {}

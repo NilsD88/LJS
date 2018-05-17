@@ -7,10 +7,6 @@ import { HomePage } from '../pages/home/home';
 import { StandingsPage } from '../pages/standings/standings';
 import { ActivitiesPage } from '../pages/activities/activities';
 
-
-import firebase from 'firebase';
-import { ENV } from '../environment';
-
 @Component({
   templateUrl: 'app.html'
 })
@@ -40,7 +36,6 @@ export class LJS {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
-    firebase.initializeApp(ENV.firebase);
   }
 
   openPage(page) {

@@ -1,7 +1,18 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { DatabaseProvider } from '../../providers/database/database';
 import { ActivityDetailPage } from '../activity-detail/activity-detail';
+import { AngularFirestore, AngularFirestoreCollection} from 'angularfire2/firestore';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/map';
+
+interface Activity{
+    id?: string
+    name: string,
+    ordering: string,
+    scoreType: string,
+    top3: Array<any>,
+    responsables: Array<string>
+}
 
 @Component({
   selector: 'page-activities',
@@ -9,18 +20,17 @@ import { ActivityDetailPage } from '../activity-detail/activity-detail';
 })
 export class ActivitiesPage {
   selectedItem: any;
-  icons: string[];
-  items: Array<{title: string, note: string, icon: string}>;
+  activitiesCollection : AngularFirestoreCollection<Activity>;
+  activities: Observable<Activity[]>
 
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
-    private _DB: DatabaseProvider ) {
+    afs: AngularFirestore) {
     // If we navigated to this page, we will have an item available as a nav param
     this.selectedItem = navParams.get('item');
-
-    this.items = [];
-    
+    this.activitiesCollection = afs.collection('/activities');
+      this.activities = this.activitiesCollection.valueChanges();
   }
 
   showDetails($event, item) {
@@ -28,18 +38,5 @@ export class ActivitiesPage {
       item: item
     });
   }
-
-  ionViewDidEnter(){
-    this.retrieveActivities();
-  }
-
-  retrieveActivities() : void{
-    this._DB.getActivities()
-    .then((data) =>
-    {
-      this.items = data;
-    })
-    .catch();
- }
 
 }

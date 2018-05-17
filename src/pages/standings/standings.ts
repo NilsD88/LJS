@@ -1,6 +1,14 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { DatabaseProvider } from '../../providers/database/database';
+import { AngularFirestore, AngularFirestoreCollection} from 'angularfire2/firestore';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/map';
+
+
+interface Association {
+  name: string,
+  points: number
+}
 
 @Component({
   selector: 'page-standings',
@@ -8,35 +16,19 @@ import { DatabaseProvider } from '../../providers/database/database';
 })
 export class StandingsPage {
   selectedItem: any;
-  items: Array<{title: string, note: string, icon: string}>;
+  associationCollection : AngularFirestoreCollection<Association>;
+  associations: Observable<Association[]>
 
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams, 
-    private _DB : DatabaseProvider) {
-    // If we navigated to this page, we will have an item available as a nav param
-    
+    private afs : AngularFirestore) {
+      
+      this.associationCollection = this.afs.collection('associations', ref => {
+        return ref.orderBy('points', 'desc');
+      });
+      this.associations= this.associationCollection.valueChanges();
 
-    this.items = [];
   }
-
-  ionViewDidEnter(){
-      this.retrieveAssociations();
-   }
-
-   retrieveAssociations() : void{
-      this._DB.getAssociations()
-      .then((data) =>
-      {
-        data.sort((b, a) =>{
-          return a.points - b.points;
-        });
-        this.items = data;
-         
-      })
-      .catch();
-   }
-
-   
   
 }

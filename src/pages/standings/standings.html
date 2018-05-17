@@ -9,14 +9,14 @@
 
 <ion-content>
 
-    <ion-card *ngFor="let item of items" >
+    <ion-card *ngFor="let association of associations |async" >
 
         <ion-card-header>
-          {{item.name}}
+          {{association.name}}
         </ion-card-header>
       
         <ion-card-content >
-         <p class="points">{{item.points}}</p> 
+         <p class="points">{{association.points}}</p> 
         </ion-card-content>
       
       </ion-card>
