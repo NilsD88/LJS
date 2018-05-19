@@ -15,7 +15,13 @@
 
 <ion-content padding>
 
-    <h5>Top 3</h5>
+   <h5>Uitleg!</h5>
+    <p>{{selectedItem.explanation}}</p>
+
+  <h5>Uitleg voor begeleiding!</h5>
+    <p>{{selectedItem.instructions}}</p>
+
+    <h5 *ngIf="selectedItem.top3">Top 3</h5>
     <ion-list>
         <p ion-item *ngFor="let item of selectedItem.top3">
           {{ item.association }}

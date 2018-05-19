@@ -7,8 +7,10 @@ import { NavController } from 'ionic-angular';
 })
 export class HomePage {
 
-  constructor(public navCtrl: NavController) {
+  authenticatedUser: string
 
+  constructor(public navCtrl: NavController) {
+    this.authenticatedUser = window.localStorage.getItem('name');
   }
 
 }

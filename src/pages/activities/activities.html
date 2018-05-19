@@ -14,7 +14,7 @@
           {{activity.name}}
         </ion-card-header>
       
-        <ion-card-content>
+        <ion-card-content *ngIf="activity.top3">
           Aan de leiding: {{activity.top3[0] !== undefined ? activity.top3[0].association : 'Nog niemand!'}}
         </ion-card-content>
       

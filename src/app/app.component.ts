@@ -6,6 +6,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { HomePage } from '../pages/home/home';
 import { StandingsPage } from '../pages/standings/standings';
 import { ActivitiesPage } from '../pages/activities/activities';
+import { LoginPage } from '../pages/login/login';
 
 @Component({
   templateUrl: 'app.html'
@@ -16,6 +17,7 @@ export class LJS {
   rootPage: any = HomePage;
 
   pages: Array<{title: string, component: any}>;
+  isAuthenticated = window.localStorage.getItem('authenticated');
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
     this.initializeApp();
@@ -23,10 +25,16 @@ export class LJS {
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Home', component: HomePage },
-      { title: 'Standings', component: StandingsPage },
-      { title: 'Activities', component: ActivitiesPage }
+      { title: 'Stand', component: StandingsPage },
+      { title: 'Activiteiten', component: ActivitiesPage },
     ];
 
+    if(this.isAuthenticated){
+      this.pages.push({ title: 'Uitloggen', component: LoginPage });
+    }else{
+      this.pages.push({ title: 'Inloggen', component: LoginPage });
+    }
+  
   }
 
   initializeApp() {

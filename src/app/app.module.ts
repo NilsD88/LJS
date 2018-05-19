@@ -17,6 +17,7 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { ENV } from '../environment';
 import { AddPointsPage } from '../pages/add-points/add-points';
+import { LoginPage } from '../pages/login/login';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { AddPointsPage } from '../pages/add-points/add-points';
     HomePage,
     StandingsPage,
     ActivitiesPage,
-    AddPointsPage
+    AddPointsPage,
+    LoginPage
   ],
   imports: [
     BrowserModule,
@@ -43,7 +45,8 @@ import { AddPointsPage } from '../pages/add-points/add-points';
     StandingsPage, 
     ActivitiesPage,
     ActivityDetailPage,
-    AddPointsPage
+    AddPointsPage,
+    LoginPage
   ],
   providers: [
     StatusBar,

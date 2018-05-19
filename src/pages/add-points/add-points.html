@@ -20,7 +20,7 @@
         <ion-item>
           <ion-label>Vereniging</ion-label>
           <ion-select [(ngModel)]="points.association">
-            <ion-option *ngFor="let association of associations | async">{{association.name}}</ion-option>
+            <ion-option *ngFor="let association of associations | async" >{{association.name}}</ion-option>
           </ion-select>
         </ion-item>
       </ion-list>
@@ -28,5 +28,8 @@
           <ion-label fixed>Punten</ion-label>
           <ion-input type="number" [(ngModel)]="points.amount"></ion-input>
         </ion-item>
+
+    <button ion-button block (click)="savePoints()" [disabled]="points.association === '' || points.amount === 0!" >Punten opslaan</button>
+
 
 </ion-content>

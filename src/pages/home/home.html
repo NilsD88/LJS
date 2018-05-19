@@ -8,10 +8,13 @@
 </ion-header>
 
 <ion-content padding>
-  <h3>Leeuws Jeugd Sportival</h3>
-
+  <h2>Leeuws Jeugd Sportival</h2>
+  <p *ngIf="authenticatedUser">
+    Hallo {{authenticatedUser}}! Je bent ingelogd! 
+  </p>
   <p>
-    Deze app houdt de scores bij per vereniging!
+    Deze app houdt de scores bij per vereniging! 
+    Sommige spelen hebben een top 3 (vooral de tijdsgebaseerde) en zullen op het einde van de dag verrekend worden in de eindscore! <br /> 
     Enkel leden kunnen deelnemen aan de competitie! 
   </p>
 

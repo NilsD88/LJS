@@ -3,20 +3,15 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Standings</ion-title>
+    <ion-title>Stand</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
 
     <ion-card *ngFor="let association of associations |async" >
-
-        <ion-card-header>
-          {{association.name}}
-        </ion-card-header>
-      
         <ion-card-content >
-         <p class="points">{{association.points}}</p> 
+            <h2 class="large">{{association.name}}</h2> <p class="points">{{association.points}}</p> 
         </ion-card-content>
       
       </ion-card>

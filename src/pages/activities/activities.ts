@@ -6,12 +6,14 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
 interface Activity{
-    id?: string
+    id: string
     name: string,
-    ordering: string,
+    ordering?: string,
     scoreType: string,
-    top3: Array<any>,
-    responsables: Array<string>
+    top3?: Array<any>,
+    responsables: Array<string>,
+    explanation: string,
+    instructions: string
 }
 
 @Component({
@@ -29,7 +31,9 @@ export class ActivitiesPage {
     afs: AngularFirestore) {
     // If we navigated to this page, we will have an item available as a nav param
     this.selectedItem = navParams.get('item');
-    this.activitiesCollection = afs.collection('/activities');
+    this.activitiesCollection = afs.collection('/activities', ref => {
+      return ref.orderBy('name');
+    });
       this.activities = this.activitiesCollection.valueChanges();
   }
 
